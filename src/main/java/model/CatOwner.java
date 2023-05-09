@@ -1,4 +1,5 @@
-package catclub;
+package model;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -10,23 +11,30 @@ public class CatOwner {
     private long id;
     @Column(name = "`name`")
     private String name;
-    @Column(name = "address")
+    @Column(name = "`address`")
     private String address;
-    @Column(name = "code")
+    @Column(name = "`code`")
     private String code;
-
     @OneToMany(mappedBy = "catOwner", fetch = FetchType.LAZY)
     private List<Cat> cats;
 
-    public CatOwner(){}
+    public CatOwner() {
+    }
 
-    public CatOwner(String name, String address, String code) {
+    public CatOwner(String name, String address, String code, List<Cat> cats) {
         this.name = name;
         this.address = address;
         this.code = code;
+//        this.cats = cats;
     }
 
+    public List<Cat> getCats() {
+        return cats;
+    }
 
+    public void setCats(List<Cat> cats) {
+        this.cats = cats;
+    }
 
     public long getId() {
         return id;
@@ -60,13 +68,14 @@ public class CatOwner {
         this.code = code;
     }
 
-    public List<Cat> getCats() {
-        return cats;
-    }
+//    public List<Cat> getCats() {
+//        return cats;
+//    }
+//
+//    public void setCats(List<Cat> cats) {
+//        this.cats = cats;
+//    }
 
-    public void setCats(List<Cat> cats) {
-        this.cats = cats;
-    }
 
     @Override
     public String toString() {
@@ -75,7 +84,7 @@ public class CatOwner {
                 ", name='" + name + '\'' +
                 ", address='" + address + '\'' +
                 ", code='" + code + '\'' +
-                ", cats=" + cats + // for not printing infinite cats of owners, it prints size of cats list
+                ", cats=" + cats +
                 '}';
     }
 }

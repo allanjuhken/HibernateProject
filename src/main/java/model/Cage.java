@@ -1,4 +1,5 @@
-package catclub;
+package model;
+
 import javax.persistence.*;
 
 @Entity
@@ -66,4 +67,5 @@ public class Cage {
                 ", cat=" + cat.getId() +
                 '}';
     }
+
 }
